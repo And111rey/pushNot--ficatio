@@ -10,17 +10,21 @@ export default function App() {
 
 
   useEffect(() => {
-    database.ref('/').on("value", (snapshot) => {
-      console.log("Hello")
+    database.ref('/').on("child_added", (snapshot) => {
+      console.log("Hello", snapshot.val())
       setData(snapshot.val())
     })
   }, [])
 
+
+
+  
   
   const hundleSubmty = () => {
-    database.ref()
-        .child("AMAZINGNEWDATA") // in firebase we will see { "AMAZINGNEWDATA": newData }
-        .push(newData)
+    database.ref('/AMAZINGNEWDATA/lalala/')
+        //.child("AMAZINGNEWDATA") // in firebase we will see { "AMAZINGNEWDATA": newData }
+        //.push(newData)
+        .set(newData)     // with this method we can set some data to { "AMAZINGNEWDATA": "..some data..." }
   }
   
   return (
